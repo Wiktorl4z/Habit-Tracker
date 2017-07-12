@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Chess Grand Tourney"
+        android:text="@string/chess_grand_tourney"
         android:textColor="@color/dark"
-        android:textSize="35sp" />
+        android:textSize="40sp" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingLeft="10dp"
-        android:text="Sign Up Now!"
+        android:text="@string/sign_up_now"
         android:textColor="@color/dark"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,16 +34,20 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/editText_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:gravity="center"
             android:hint="Username" />
 
         <EditText
+            android:id="@+id/editText_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="0.5"
+            android:gravity="center"
             android:hint="Age" />
 
     </LinearLayout>
@@ -59,9 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="18sp"
-            android:text="Your rank" />
-
+            android:text="@string/your_rank"
+            android:textColor="@color/dark"
+            android:textSize="18sp" />
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -70,16 +74,15 @@
             android:layout_height="wrap_content"
             tools:context=".MainActivity">
 
-
             <CheckBox
                 android:id="@+id/checkbox_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/toggle"
                 android:paddingEnd="8dp"
-                android:paddingLeft="8dp"
+                android:paddingLeft="16dp"
                 android:paddingRight="8dp"
-                android:paddingStart="8dp"
+                android:paddingStart="16dp"
                 android:text="@string/five"
                 android:textColor="@color/text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -174,21 +177,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button_quit"
             android:layout_width="wrap_content"
-            android:text="QUIT"
-            android:padding="10dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:padding="10dp"
+            android:text="QUIT" />
 
         <Button
+            android:id="@+id/button_sign_up"
             android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:text="SIGN UP"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:padding="10dp"
+            android:text="SIGN UP" />
 
     </LinearLayout>
-
-
-
 </LinearLayout>

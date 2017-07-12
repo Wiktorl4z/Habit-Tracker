@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
-    <string name="five">500points</string>
-    <string name="ten">1000points</string>
-    <string name="fifteen">1500points</string>
-    <string name="twenty">2000points</string>
+    <string name="five">500 points</string>
+    <string name="ten">1000 points</string>
+    <string name="fifteen">1500 points</string>
+    <string name="twenty">2000 points</string>
+    <string name="sign_up_now">Sign Up Now!</string>
+    <string name="chess_grand_tourney">Chess Grand Tourney</string>
+    <string name="your_rank">Your rank</string>
 </resources>
