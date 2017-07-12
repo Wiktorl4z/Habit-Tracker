@@ -7,4 +7,13 @@
     <string name="sign_up_now">Sign Up Now!</string>
     <string name="chess_grand_tourney">Chess Grand Tourney</string>
     <string name="your_rank">Your rank</string>
+    <string name="checker">checker</string>
+    <string name="dummy">dummy</string>
+    <string name="clear_database">clear Database</string>
+    <string name="title">Chess Players</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="rank">Rank</string>
+    <string name="chess_players">Chess Players</string>
+    <string name="id">ID</string>
 </resources>
