@@ -72,12 +72,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_checker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/checker" />
-
-        <Button
             android:id="@+id/button_dummy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

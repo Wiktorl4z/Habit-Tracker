@@ -8,7 +8,7 @@ import static com.example.l4z.habittracker.date.ParticipantsContract.Participant
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_NAME;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_RANK;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.TABLE_NAME;
-import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry._ID;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_ID;
 
 /**
  * Created by l4z on 11.07.2017.
@@ -35,7 +35,7 @@ public class ParticipantsDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String SQL_CREATE_PARTICIPANT_TABLE = "CREATE TABLE " + TABLE_NAME
-                + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_NAME + " TEXT NOT NULL, "
                 + COLUMN_AGE + " INTEGER NOT NULL, "
                 + COLUMN_RANK + " INTEGER NOT NULL DEFAULT 500);";

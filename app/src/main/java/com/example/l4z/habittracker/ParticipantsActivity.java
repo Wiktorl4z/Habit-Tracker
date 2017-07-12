@@ -5,14 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.l4z.habittracker.date.ParticipantsContract;
 import com.example.l4z.habittracker.date.ParticipantsDbHelper;
@@ -23,7 +21,7 @@ import static com.example.l4z.habittracker.date.ParticipantsContract.Participant
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_NAME;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_RANK;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.TABLE_NAME;
-import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry._ID;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_ID;
 
 /**
  * Created by l4z on 12.07.2017.
@@ -32,7 +30,7 @@ import static com.example.l4z.habittracker.date.ParticipantsContract.Participant
 public class ParticipantsActivity extends AppCompatActivity {
 
     private ParticipantsDbHelper mDbHelper;
-    private Button mButtonChecker;
+
     private Button mButtonDummy;
     private Button mButtonClear;
     private SQLiteDatabase db;
@@ -47,17 +45,10 @@ public class ParticipantsActivity extends AppCompatActivity {
         setContentView(R.layout.desgin);
 
         list = new ArrayList<>();
-        mButtonChecker = (Button) findViewById(R.id.button_checker);
         mButtonClear = (Button) findViewById(R.id.button_clear_max);
         mTableHeader = (TableRow) findViewById(R.id.table_header_main);
         mTextViewHeader = (TextView) findViewById(R.id.header);
         tableLayout = (TableLayout) findViewById(R.id.tableLayout1);
-        mButtonChecker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayDatabaseInfo();
-            }
-        });
         mButtonDummy = (Button) findViewById(R.id.button_dummy);
         mButtonDummy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +77,7 @@ public class ParticipantsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        insertDummy();
         displayDatabaseInfo();
     }
 
@@ -95,7 +87,7 @@ public class ParticipantsActivity extends AppCompatActivity {
         mDbHelper = new ParticipantsDbHelper(this);
 
         String[] projection = {
-                _ID,
+                COLUMN_ID,
                 COLUMN_NAME,
                 COLUMN_AGE,
                 COLUMN_RANK,
@@ -112,7 +104,7 @@ public class ParticipantsActivity extends AppCompatActivity {
                 null);
 
         try {
-            int idColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry._ID);
+            int idColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry.COLUMN_ID);
             int nameColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry.COLUMN_NAME);
             int ageColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry.COLUMN_AGE);
             int rankColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry.COLUMN_RANK);
@@ -148,19 +140,20 @@ public class ParticipantsActivity extends AppCompatActivity {
 
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, "Grand Master");
-        values.put(COLUMN_AGE, "65");
+        values.put(COLUMN_NAME, "Udacity Mentor");
+        values.put(COLUMN_AGE, "30");
         values.put(COLUMN_RANK, "3000");
 
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        long newRowId = db.insert(TABLE_NAME, null, values);
-        Log.v("CatalogActivity", "New row ID " + newRowId);
+        db = mDbHelper.getWritableDatabase();
+        db.insert(TABLE_NAME, null, values);
 
-        if (newRowId == -1) {
-            Toast.makeText(this, "Error with saving", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
-        }
+        ContentValues values1 = new ContentValues();
+        values.put(COLUMN_NAME, "Grand Master");
+        values.put(COLUMN_AGE, "65");
+        values.put(COLUMN_RANK, "6000");
+
+        db = mDbHelper.getWritableDatabase();
+        db.insert(TABLE_NAME, null, values1);
     }
 
     public TableRow createRow(String id, String name, String age, String rank) {

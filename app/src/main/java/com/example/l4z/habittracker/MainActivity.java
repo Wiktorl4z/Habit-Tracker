@@ -15,6 +15,11 @@ import android.widget.Toast;
 import com.example.l4z.habittracker.date.ParticipantsContract;
 import com.example.l4z.habittracker.date.ParticipantsDbHelper;
 
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_AGE;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_NAME;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_RANK;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.TABLE_NAME;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -57,10 +62,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private ParticipantsDbHelper mDbHelper;
 
+    private SQLiteDatabase db;
+
     /**
      * Button field to sign up
      */
     private Button mButtonSignUp;
+
+    private String userRank;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
 
         mDbHelper = new ParticipantsDbHelper(this);
+
         mUserName = (EditText) findViewById(R.id.editText_userName);
         mUserAge = (EditText) findViewById(R.id.editText_age);
         mCheckBox5 = (CheckBox) findViewById(R.id.checkbox_five);
@@ -97,11 +108,34 @@ public class MainActivity extends AppCompatActivity {
         String userString = mUserName.getText().toString().trim();
         String userAge = mUserAge.getText().toString().trim();
 
+        if (mCheckBox5.isChecked()) {
+            userRank = ParticipantsContract.ParticipantsEntry.COLUMN_RANK_500;
+            mCheckBox10.setEnabled(false);
+            mCheckBox15.setEnabled(false);
+            mCheckBox20.setEnabled(false);
+        } else if (mCheckBox10.isChecked()) {
+            userRank = ParticipantsContract.ParticipantsEntry.COLUMN_RANK_1000;
+            mCheckBox5.setEnabled(false);
+            mCheckBox10.setEnabled(false);
+            mCheckBox15.setEnabled(false);
+        } else if (mCheckBox15.isChecked()) {
+            userRank = ParticipantsContract.ParticipantsEntry.COLUMN_RANK_1500;
+            mCheckBox5.setEnabled(false);
+            mCheckBox10.setEnabled(false);
+            mCheckBox15.setEnabled(false);
+        } else {
+            userRank = ParticipantsContract.ParticipantsEntry.COLUMN_RANK_2000;
+            mCheckBox5.setEnabled(false);
+            mCheckBox10.setEnabled(false);
+            mCheckBox15.setEnabled(false);
+        }
+
         ContentValues values = new ContentValues();
         values.put(ParticipantsContract.ParticipantsEntry.COLUMN_NAME, userString);
         values.put(ParticipantsContract.ParticipantsEntry.COLUMN_AGE, userAge);
+        values.put(ParticipantsContract.ParticipantsEntry.COLUMN_RANK, userRank);
 
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        db = mDbHelper.getWritableDatabase();
         long newRowID = db.insert(ParticipantsContract.ParticipantsEntry.TABLE_NAME, null, values);
         Log.v("MainActivity", "New row ID " + newRowID);
 
