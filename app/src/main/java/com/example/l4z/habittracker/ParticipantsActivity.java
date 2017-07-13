@@ -17,6 +17,9 @@ import com.example.l4z.habittracker.date.ParticipantsDbHelper;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_AGE;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_NAME;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_RANK;
@@ -31,25 +34,27 @@ public class ParticipantsActivity extends AppCompatActivity {
 
     private ParticipantsDbHelper mDbHelper;
 
-    private Button mButtonDummy;
-    private Button mButtonClear;
-    private SQLiteDatabase db;
-    private TableLayout tableLayout;
-    private TableRow mTableHeader;
-    private TextView mTextViewHeader;
+
+    @BindView(R.id.button_clear_max)
+    Button mButtonClear;
+    @BindView(R.id.table_header_main)
+    TableRow mTableHeader;
+    @BindView(R.id.header)
+    TextView mTextViewHeader;
+    @BindView(R.id.tableLayout1)
+    TableLayout tableLayout;
+    @BindView(R.id.button_dummy)
+    Button mButtonDummy;
     private ArrayList<TableRow> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.desgin);
+        setContentView(R.layout.participants_activity);
 
+        ButterKnife.bind(this);
         list = new ArrayList<>();
-        mButtonClear = (Button) findViewById(R.id.button_clear_max);
-        mTableHeader = (TableRow) findViewById(R.id.table_header_main);
-        mTextViewHeader = (TextView) findViewById(R.id.header);
-        tableLayout = (TableLayout) findViewById(R.id.tableLayout1);
-        mButtonDummy = (Button) findViewById(R.id.button_dummy);
+
         mButtonDummy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +66,7 @@ public class ParticipantsActivity extends AppCompatActivity {
         mButtonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db = mDbHelper.getWritableDatabase();
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
                 // Deleting data from table
                 db.execSQL("DELETE FROM participants");
                 // Cleaning memory
@@ -86,22 +91,7 @@ public class ParticipantsActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
         mDbHelper = new ParticipantsDbHelper(this);
 
-        String[] projection = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_AGE,
-                COLUMN_RANK,
-        };
-
-        // Create and/or open a database to read from it
-        db = mDbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
+        Cursor cursor = getCursor();
 
         try {
             int idColumnIndex = cursor.getColumnIndex(ParticipantsContract.ParticipantsEntry.COLUMN_ID);
@@ -128,6 +118,26 @@ public class ParticipantsActivity extends AppCompatActivity {
         }
     }
 
+    private Cursor getCursor() {
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_AGE,
+                COLUMN_RANK,
+        };
+
+        return db.query(TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+    }
+
     private void vacuumTable() {
         for (TableRow row : list) {
             tableLayout.removeView(row);
@@ -137,22 +147,20 @@ public class ParticipantsActivity extends AppCompatActivity {
 
     private void insertDummy() {
         ParticipantsDbHelper mDbHelper = new ParticipantsDbHelper(this);
-
         // New value for one column
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, "Udacity Mentor");
         values.put(COLUMN_AGE, "30");
         values.put(COLUMN_RANK, "3000");
 
-        db = mDbHelper.getWritableDatabase();
+        SQLiteDatabase  db = mDbHelper.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
 
         ContentValues values1 = new ContentValues();
-        values.put(COLUMN_NAME, "Grand Master");
-        values.put(COLUMN_AGE, "65");
-        values.put(COLUMN_RANK, "6000");
+        values1.put(COLUMN_NAME, "Grand Master");
+        values1.put(COLUMN_AGE, "65");
+        values1.put(COLUMN_RANK, "6000");
 
-        db = mDbHelper.getWritableDatabase();
         db.insert(TABLE_NAME, null, values1);
     }
 

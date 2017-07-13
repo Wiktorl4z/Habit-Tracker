@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="QUIT" />
+            android:text="@string/quit" />
 
         <Button
             android:id="@+id/button_sign_up"
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="SIGN UP" />
+            android:text="@string/sign_up" />
 
     </LinearLayout>
 </LinearLayout>

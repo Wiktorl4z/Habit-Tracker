@@ -16,4 +16,6 @@
     <string name="rank">Rank</string>
     <string name="chess_players">Chess Players</string>
     <string name="id">ID</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="quit">QUIT</string>
 </resources>
