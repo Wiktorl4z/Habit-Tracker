@@ -21,10 +21,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_AGE;
+import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_ID;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_NAME;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_RANK;
 import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.TABLE_NAME;
-import static com.example.l4z.habittracker.date.ParticipantsContract.ParticipantsEntry.COLUMN_ID;
 
 /**
  * Created by l4z on 12.07.2017.
