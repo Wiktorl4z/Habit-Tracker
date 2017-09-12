@@ -1,92 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tableLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:shrinkColumns="*"
-        android:stretchColumns="*">
-
-        <TableRow
-            android:id="@+id/table_header_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="4"
-                android:gravity="center"
-                android:text="@string/chess_players"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/table_row_one"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView_id"
-                android:gravity="center"
-                android:text="@string/id"
-                android:textStyle="bold"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                     android:id="@+id/tableLayout1"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:shrinkColumns="*"
+                     android:stretchColumns="*">
+
+            <TableRow
+                    android:id="@+id/table_header_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                <TextView
+                        android:id="@+id/header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="4"
+                        android:gravity="center"
+                        style="@style/ParticipantsStyle"
+                        android:text="@string/chess_players"
+                        android:textSize="20dp"
+                        android:typeface="serif"/>
+            </TableRow>
+
+            <TableRow
+                    android:id="@+id/table_row_one"
+                    android:layout_width="wrap_content"
+                    style="@style/ParticipantsStyle"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/textView_id"
+                        android:gravity="center"
+                        android:text="@string/id"
+                        style="@style/ParticipantsStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                <TextView
+                        android:id="@+id/textView_name"
+                        android:gravity="center"
+                        android:text="@string/name"
+                        style="@style/ParticipantsStyle"
+                        android:typeface="serif"/>
+
+                <TextView
+                        android:id="@+id/textView_age"
+                        android:gravity="center"
+                        android:text="@string/age"
+                        style="@style/ParticipantsStyle"
+                        android:typeface="serif"/>
+
+                <TextView
+                        android:id="@+id/textView_rank"
+                        android:gravity="center"
+                        android:text="@string/rank"
+                        style="@style/ParticipantsStyle"
+                        android:typeface="serif"/>
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TextView
-                android:id="@+id/textView_name"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/name"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView_age"
-                android:gravity="center"
-                android:text="@string/age"
-                android:textStyle="bold"
-                android:typeface="serif" />
+            <Button
+                    android:id="@+id/button_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:text="@string/dummy"/>
 
-            <TextView
-                android:id="@+id/textView_rank"
-                android:gravity="center"
-                android:text="@string/rank"
-                android:textStyle="bold"
-                android:typeface="serif" />
-        </TableRow>
-    </TableLayout>
+            <Button
+                    android:id="@+id/button_clear_max"
+                    android:layout_width="wrap_content"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clear_database"/>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_dummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dummy" />
-
-        <Button
-            android:id="@+id/button_clear_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clear_database" />
     </LinearLayout>
-
-</LinearLayout>
 </ScrollView>
